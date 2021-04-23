@@ -4,21 +4,28 @@ let newDogArr = [];
         
 function fetchImages () {
     const imgUrl = "https://dog.ceo/api/breeds/image/random/4" 
-    fetch(imgUrl)
+    fetch(imgUrl) 
     .then(function(response){
-        return response.json();
+        return response.json(); //response.json() is also considered an asychronous function that also returns a promise
     })
     .then(function(json) {
         return developImg(json.message)
     });
 }
 
+//Iterate over array of image urls
+//for each url, create an image element
+//set the source of the image equal to the url
+//append the image to the page
+
 function developImg(images) {
    const imgAdd = document.getElementById('dog-image-container')
     images.forEach(function(image) {
         const newImg = document.createElement("img")
         newImg.src = image
-        imgAdd.appendChild(newImg)
+        newImg.width = 300
+        newImg. height = 300
+        imgAdd.appendChild(newImg) //append the image to the page 
     });  
 }
 
@@ -82,3 +89,5 @@ document.addEventListener('DOMContentLoaded', function(){
     fetchImages();
     fetchBreeds();
 })
+
+//if the code references the DOM, you want to be sure that the DOM is loaded before execution
